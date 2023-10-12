@@ -1,29 +1,44 @@
-const container = document.querySelector('.container');
+const main = document.querySelector('main');
+const form = document.querySelector('form');
 
+form.hidden = true;
 
 const myLibrary = [
     new Book('David Goggin', 'Cant hurt me', 345, true),
-    new Book('Jordan Pietersen','12 rule of life', 341, false ),
+    new Book('Jordan Pietersen', '12 rule of life', 341, false),
     new Book('Benjamin Graham', 'Intelligent Invenstor', 700, true)
-
+    
 ];
 
-myLibrary.splice(1, 1);
-let bookDetail = '';
-myLibrary.forEach((book,index) => {
-    bookDetail += `<p> ${book.author} - ${book.title} - ${book.pages}- ${book.read} - ${index}</p>
-    <button data-key = ${index}>Delete</button>
-    `
-})
+// loadBook();
 
-container.innerHTML = bookDetail;
-var btns  = document.querySelectorAll('button');
+function loadBook() {
+    let bookDetail = '';
+    myLibrary.forEach((book, index) => {
+        bookDetail += `<p> ${book.author} - ${book.title} - ${book.pages}- ${book.read} - ${index}</p>
+    <button class ="${index} librarybtn" data-key = ${index}>Delete</button>
+    `
+    })
+
+    main.innerHTML = bookDetail;
+
+}
+
+var create = document.querySelector('#create');
+create.addEventListener('click' ,toggleForm )
+
+var btns = document.querySelectorAll('.librarybtn');
 
 Array.from(btns).forEach(btn => {
-    btn.addEventListener('click', (e)=> {
-        console.log(e.dataset.key);
+    btn.addEventListener('click', (e) => {
+        console.log(e.dataset);
     })
 })
+
+var submitbtn = document.querySelector('#submit');
+
+submitbtn.addEventListener('click', addBookToLibrary);
+
 
 
 
@@ -35,5 +50,27 @@ function Book(author, title, pages, read) {
 }
 
 function addBookToLibrary() {
-  // do stuff here
+    console.log(form.read)
+    form.read.value = form.read.checked ? true :false;
+    myLibrary.push(new Book(form.author.value, form.title.value, 
+        form.pages.value, form.read.value));
+    form.reset();
+    loadBook();
+    toggleForm();
+    return false;
+    // do stuff here
+}
+
+function deleteBook(index) {
+    myLibrary.splice(index, 1);
+    loadBook();
+}
+
+function toggleForm() {
+    if(form.hidden){
+        form.hidden = false;
+    } 
+    else{
+        form.hidden = true;
+    }
 }
