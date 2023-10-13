@@ -5,21 +5,26 @@
 }
 
 :root{
-
+    --color1:#f0f2f5;
+    --color2:#1877f2;
+    --color3:#42b72a;
+    --color4:rgb(204, 21, 97);
+    --color5:magenta;
+    
 }
 
 body{
-    background-color: #98a884;
+    background-color: var(--color1);
 }
 
 article {
     display: flex;
     flex-direction: column;
-    border: 2px solid;
     border-radius: 11px;
     padding: 10px;
-    box-shadow: 15px 15px 52px -10px #8BC34A;
+    box-shadow: 15px 15px 52px -10px #859b6d;
     background: white;
+    cursor: pointer;
 }
 
 section {
@@ -30,16 +35,111 @@ section {
 
 main {
     display: grid;
-    grid-template-columns: repeat(auto-fit,minmax(250px, 1fr));
+    grid-template-columns: repeat(auto-fill,minmax(250px, 1fr));
     gap: 10px;
 }
 
-article:hover{
-    transform: scale(1.05);
+article:hover{background: var(--color1);/* color: var(--color1); */}
+
+
+
+header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
 }
 
-button#create {
+.form-item {
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px;
+}
+
+.form-item:nth-child(4) {
+    flex-direction: row;
+    gap: 10px;
+}
+
+button, input {
+    padding: 10px;
+    background: var(--color2);
+    border: none;
+    border-radius: 13px;
+    font-size: 1.2rem;
+    color: var(--color1);
+}
+
+input {background: var(--color1);color: black;/* border: 1px solid var(--color2); */}
+
+.image-info {
+    background: url(img/book.jpg);
+    background-size: 100% 100%;
+    height: 200px;
+    border-radius: 7px;
+}
+
+/* for dialog */
+::backdrop {
+    background-image: linear-gradient(
+      45deg,
+      black,
+      gray
+    );
+    opacity: 0.75;
+  }
+
+  dialog:modal {
+    font-size: 23px;
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    left: 73%;
+    top: 48%;
+    border: none;
+}
+
+button#close {
+    min-width: 50px;
+    border-radius: 0;
+}
+
+main span {
+    font-size: 8rem;
+    background: #20291e59;
+    color: var(--color1);
     display: block;
-    /* margin-left: auto; */
-    margin: 10px 10px 10px auto;
+    width: 100%;
+    text-align: center;
+    font-family: 'Khand';
+}
+
+
+
+
+form {
+    padding: 10px 0;
+}
+
+label#message {
+    color: var(--color4);
+}
+
+.container {
+    font-family: 'Khand', sans-serif;
+    /* font-family: 'Roboto Slab', serif; */
+}
+
+h1 {
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+    margin: 4px;
+}
+
+h2 {text-align: center;font-size: 1.5rem;}
+
+h4 {
+    font-size: 2rem;
 }
