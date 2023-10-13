@@ -136,6 +136,7 @@ h1 {
     font-family: 'Roboto Slab', serif;
     text-align: center;
     margin: 4px;
+    color: var(--color4);
 }
 
 h2 {text-align: center;font-size: 1.5rem;}
