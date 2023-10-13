@@ -96,8 +96,8 @@ input {background: var(--color1);color: black;/* border: 1px solid var(--color2)
     display: flex;
     gap: 10px;
     position: absolute;
-    left: 73%;
-    top: 48%;
+    left: auto;
+    top: auto;
     border: none;
 }
 
@@ -144,3 +144,11 @@ h2 {text-align: center;font-size: 1.5rem;}
 h4 {
     font-size: 2rem;
 }
+
+@media only screen and (max-width: 600px){
+    dialog:modal {
+        left: revert;
+        display: block;
+    }
+}
+
