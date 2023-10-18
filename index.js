@@ -2,6 +2,14 @@ const main = document.querySelector('main');
 const form = document.querySelector('form');
 let message = document.getElementById('message');
 
+class Book {
+    constructor(author, title, pages, read) {
+        this.author = author;
+        this.title = title;
+        this.pages = pages;
+        this.read = read;
+    }
+}
 // form.hidden = true;
 
 const myLibrary = [
@@ -29,7 +37,7 @@ function loadBook() {
             officia id libero. Amet nihil facilis accusantium voluptate commodi?</p>
         <section>
             <p>Pages : ${book.pages}</p>
-            <p>Completed : ${book.read}</p>
+            <p>Read : ${book.read}</p>
         </section>
 
         <button class="${index} deletebtn" data-key=${index}>Delete</button>
@@ -57,7 +65,7 @@ function enableToggleRead() {
     Array.from(articles).forEach(btn => {
         btn.addEventListener('dblclick', toggleRead);
     })
-    
+
 }
 
 var submitbtn = document.querySelector('#submit');
@@ -71,23 +79,19 @@ const closeButton = document.querySelector("#close");
 showButton.addEventListener("click", () => {
     message.innerHTML = '';
     dialog.showModal();
-  });
+});
 
-  // "Close" button closes the dialog
+// "Close" button closes the dialog
 closeButton.addEventListener("click", () => {
     dialog.close();
-  });
+});
 
-function Book(author, title, pages, read) {
-    this.author = author;
-    this.title = title;
-    this.pages = pages;
-    this.read = read;
-}
+
+
 
 
 function addBookToLibrary() {
-    if(!validateForm()){
+    if (!validateForm()) {
         return;
     }
     form.read.value = form.read.checked ? true : false;
@@ -107,7 +111,7 @@ function deleteBook(e) {
 
 function toggleRead(e) {
     let index = e.currentTarget.classList[0];
-    myLibrary[index].read =  !myLibrary[index].read;
+    myLibrary[index].read = !myLibrary[index].read;
     loadBookAndReadEvent();
 }
 
@@ -119,15 +123,15 @@ function loadBookAndReadEvent() {
 
 
 
-function ErrorMessage(value, name){
+function ErrorMessage(value, name) {
     this.value = value,
-    this.name = name;
+        this.name = name;
 }
 
 ErrorMessage.prototype.returnObj = function () {
-    return {value : this.value, name :  this.name}
+    return { value: this.value, name: this.name }
 }
-function validateForm(){
+function validateForm() {
     // myLibrary.push(new Book(form.author.value, form.title.value,
     //     form.pages.value, form.read.value));
     let inputs = [];
@@ -140,11 +144,11 @@ function validateForm(){
 
     let messageText = '';
     inputs.forEach(item => {
-        if(!item.value){
+        if (!item.value) {
             messageText += `<p>*${item.name} is required.</p>`
         }
     })
-    if(messageText){
+    if (messageText) {
         message.innerHTML = messageText;
         return false;
     }
